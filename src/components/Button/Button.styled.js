@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ButtonWrapper = styled.button`
     color: ${(props) => props.theme.color.primary};
-    background-color: ${(props) => props.theme.color.secondary};
+    background-color: ${(props) => props.color ? props.color : props.theme.color.secondary};
     padding: 20px 30px;
     min-width: 300px;
     font-size: 1.5rem;

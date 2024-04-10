@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-    color: ${(props) => props.theme.color.text};
+    color: ${(props) => props.primary ? props.theme.color.primary : props.theme.color.text};
     font-size: 3em;
     font-family: 'Pacifico', cursive;
     background-color: transparent;
@@ -9,7 +9,8 @@ export const Title = styled.h1`
 
 export const SubTitle = styled.h2`
     font-size: 24px;
-    font-weight: 200;
-    color: ${(props) => props.theme.color.text};
+    font-weight: 300;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: ${(props) => props.primary ? props.theme.color.primary : props.theme.color.text};
     background-color: transparent;
 `

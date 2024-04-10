@@ -6,7 +6,9 @@ import Deatails from './pages/Details/Deatails'
 import Header from './components/Header/Header'
 
 
+
 const Router = () => {
+
   return (
       <BrowserRouter>
           <Header/>
