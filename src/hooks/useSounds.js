@@ -7,7 +7,9 @@ const useSound = (url, options) => {
         audio.load()
         setSound(audio);
         audio.volume = options.volume
-    },[]);
+    },
+        // eslint-disable-next-line 
+        []);
 
     return () => {
 

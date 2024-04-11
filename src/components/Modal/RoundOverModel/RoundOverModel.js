@@ -9,7 +9,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 const RoundOverModel = () => {
-  const { hoverSfx, clickSfx, completedSfx } = useContext(SfxContext);
+  const { hoverSfx, completedSfx } = useContext(SfxContext);
   const { resetBoard, game, restartGame } = useContext(GameContext);
   const { handleModal } = useContext(ModalContext);
   const navigate = useNavigate();
