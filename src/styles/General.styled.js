@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.h1`
     color: ${(props) => props.primary ? props.theme.color.primary : props.theme.color.text};
-    font-size: 3em;
+    font-size: 3rem;
     font-family: 'Pacifico', cursive;
     background-color: transparent;
 `

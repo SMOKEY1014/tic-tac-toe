@@ -7,14 +7,14 @@ import { SubTitle } from '../../styles/General.styled'
 const Player = ({ player, isPlayerActive }) => {
 
   return (
-    <PlayerWrapper isPlayerActive={isPlayerActive ?? false}>
+    <PlayerWrapper >
 
-      <AvatarWrapper>
+      <AvatarWrapper isPlayerActive={isPlayerActive ?? false}>
         <Avatar {...player.avatarConfig} />
       </AvatarWrapper>
 
-      <SubTitle>{`${player.name} (${player.choice})`}</SubTitle>
-      <SubTitle>{player.score}</SubTitle>
+      <SubTitle style={{ "justify-content": "space-between",  "padding-left": "5px"}}>{` ${player.name} (${player.choice})`}</SubTitle>
+      <SubTitle style={{"padding-left": "5px"}}>{player.score}</SubTitle>
     </PlayerWrapper>
   )
 }

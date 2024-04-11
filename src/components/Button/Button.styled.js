@@ -11,6 +11,9 @@ export const ButtonWrapper = styled.button`
     border: none;
     border-radius: 10px;
     font-weight: 200;
+    ${(props) => props.theme.media.mobile} {
+        min-width: 100px;
+    }
 
     &:hover {
         box-shadow: 0px 0px 10px ${(props) => props.theme.color.purple};

@@ -10,7 +10,7 @@ export const PlayerWrapper = styled.div`
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin: 1rem;
+        margin: 2rem;
     }
    `
 
@@ -19,6 +19,7 @@ div {
    display: flex;
    height: 10rem;
    width: 10rem;
+   filter: ${(props) => props.isPlayerActive ? "" : 'grayscale(100%)'};
    ${(props) => props.theme.media.mobile} {
       height: 7rem;
       display: flex;
