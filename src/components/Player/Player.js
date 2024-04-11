@@ -1,16 +1,20 @@
 import React from 'react'
-import { PlayerWrapper } from './Player.styled'
-import Avatar, { genConfig } from 'react-nice-avatar'
+import { PlayerWrapper, AvatarWrapper } from './Player.styled'
+import Avatar from 'react-nice-avatar'
+import { SubTitle } from '../../styles/General.styled'
 
 
 const Player = ({ player, isPlayerActive }) => {
-  const config = genConfig();
 
   return (
     <PlayerWrapper isPlayerActive={isPlayerActive ?? false}>
-      <Avatar style={{ width: '8rem', height: '8rem' }} {...config} />
-      <div>{`${player.name}(${player.choice})`}</div>
-      <div>{player.score}</div>
+
+      <AvatarWrapper>
+        <Avatar {...player.avatarConfig} />
+      </AvatarWrapper>
+
+      <SubTitle>{`${player.name} (${player.choice})`}</SubTitle>
+      <SubTitle>{player.score}</SubTitle>
     </PlayerWrapper>
   )
 }

@@ -8,11 +8,10 @@ import {ReactComponent as XIconOutline} from "../../assets/svgs/icon-x-outline.s
 import {ReactComponent as OIconOutline} from "../../assets/svgs/icon-o-outline.svg"
 import { ModalContext } from '../../contexts/ModalContext'
 import RoundOverModel from '../Modal/RoundOverModel/RoundOverModel'
-import RoundDrawModel from '../Modal/RoundOverModel/RoundDraw'
 
 
 const GameCell = ({ cellItem, index }) => {
-  const { updateBoard, game, roundComplete, updateBoardDraw, roundCompleteDraw } = useContext(GameContext);
+  const { updateBoard, game, roundComplete } = useContext(GameContext);
   const {handleModal} = useContext(ModalContext)
   
 
@@ -20,13 +19,9 @@ const GameCell = ({ cellItem, index }) => {
     updateBoard(index);
     const result = checkForWinner(game.board);
 
-    if (result) {
-      roundComplete();
+    if (result != null) {
+      roundComplete(result);
       handleModal(<RoundOverModel />);
-    } else if (result === false) {
-      updateBoardDraw();
-      roundCompleteDraw();
-      handleModal(<RoundDrawModel />);
     }
   }
 

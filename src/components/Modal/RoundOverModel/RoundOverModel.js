@@ -14,7 +14,7 @@ const RoundOverModel = () => {
   return (
     <>
       <ModalHeader>
-        <Title primary>{game.roundWinner.name} Won !!</Title>
+        <Title primary>{game.roundWinner === "draw" ? "Draw" : `${game.roundWinner.name} Won !!`} </Title>
       </ModalHeader>
       <ModalBody>
         <SubTitle primary>Choices will be switched now</SubTitle>

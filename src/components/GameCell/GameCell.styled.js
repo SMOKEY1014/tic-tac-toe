@@ -16,6 +16,18 @@ export const CellStyle = styled.button`
         /* font-size: 1rem; */
         height: 6rem;
         width: 6rem;
+        position: relative;
+        .markedItem {
+        path {
+            color: ${(props) => props.theme.color.secondary};
+        }
+        position: absolute;
+        color: aqua;
+        width: 4rem;
+        height: 4rem;
+        top: 15%;
+        right: 15%;
+    }
     }
     .markedItem {
         path {

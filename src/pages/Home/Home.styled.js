@@ -11,4 +11,11 @@ export const Container = styled.div`
     background-color: ${(props) => props.theme.color.primary};
     padding: 0 1.5rem;
     text-align: center;
+
+    ${(props) => props.theme.media.mobile} {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
     `

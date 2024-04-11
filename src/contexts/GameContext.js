@@ -1,5 +1,6 @@
 import React from 'react'
 import { createContext, useState } from "react";
+import { genConfig } from 'react-nice-avatar'
 
 
 export const GameContext = createContext({});
@@ -11,12 +12,16 @@ export const GameContextProvider = (props) => {
             player1: {
                 choice: "X",
                 name: "Smokey",
-                score: 0
+                score: 0,
+                color: "#8437f9",
+                avatarConfig: genConfig()
             },
             player2: {
                 choice: "O",
                 name: "Ntuthuko",
-                score: 0
+                score: 0,
+                color: "#f9c811",
+                avatarConfig: genConfig()
             },
             turn: "X",
             roundWinner: ""
@@ -70,44 +75,53 @@ export const GameContextProvider = (props) => {
 
     
     const updateScore = (winner) => {
-        setGame(prevGame => ({
+        if (winner === false) {
+            setGame(prevGame => ({
             ...prevGame,
-            [winner]: {
-                ...prevGame[winner],
-                score: prevGame[winner].score + 1,
+            player1: {
+                ...prevGame.player1,
+                score: prevGame.player1.score + 0.5,
             },
-            roundWinner: prevGame[winner]
+            player2: {
+                ...prevGame.player2,
+                score: prevGame.player2.score + 0.5,
+            },
+            roundWinner: "draw",
+            
+            // roundWinner: `${prevGame.player1} and ${prevGame.player2}`
         }));
+        } else {
+
+            setGame(prevGame => ({
+                ...prevGame,
+                [winner]: {
+                    ...prevGame[winner],
+                    score: prevGame[winner].score + 1,
+                },
+                // roundWinner: null
+                roundWinner: prevGame[winner]
+            }));
+        }
     };
-    const updateScoreDraw = (winner1, winner2) => {
-        setGame(prevGame => ({
-            ...prevGame,
-            [winner1]: {
-                ...prevGame[winner1],
-                score: prevGame[winner1].score + 0.5,
-            },
-            [winner2]: {
-                ...prevGame[winner2],
-                score: prevGame[winner2].score + 0.5,
-            },
-            roundWinner: `${prevGame[winner1]} and ${prevGame[winner2]}`
-        }));
-    };
+    // const updateScoreDraw = (winner1, winner2) => {
+        
+    // };
     
 
 
-    const roundComplete = () => {
-        if (game.turn === game.player1.choice) {
+    const roundComplete = (result) => {
+        if ((game.turn === game.player1.choice) && result) {
             console.log("PLAYER 1 wins")
             updateScore("player1");
         }
-        else if (game.turn === game.player2.choice) {
+        else if ((game.turn === game.player2.choice) && result) {
             console.log("PLAYER 2 wins")
             updateScore("player2");
         } else {
             console.log("draw");
-            updateScore("player1");
-            updateScore("player2");
+            // updateScore("player1");
+            // updateScore("player2");
+            updateScore(result);
         }
         switchTurn();
     };
@@ -115,7 +129,7 @@ export const GameContextProvider = (props) => {
     const roundCompleteDraw = () => {
         
         console.log("Draw");
-        updateScoreDraw("player1", "player2");
+        // updateScoreDraw("player1", "player2");
         switchTurn();
     };
 
