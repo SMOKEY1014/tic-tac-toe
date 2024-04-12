@@ -11,7 +11,7 @@ import RoundOverModel from '../Modal/RoundOverModel/RoundOverModel'
 import { SfxContext } from '../../contexts/SoundEffectsContext'
 
 
-const GameCell = ({ cellItem, index }) => {
+const GameCell = ({ cellItem, index, iswinningcell, isgamedrawn, ...rest }) => {
   const { updateBoard, game, roundComplete } = useContext(GameContext);
   const {handleModal} = useContext(ModalContext)
 const { hoverSfx, clickSfx, winSfx, completedSfx } = useContext(SfxContext);
@@ -31,16 +31,18 @@ const { hoverSfx, clickSfx, winSfx, completedSfx } = useContext(SfxContext);
       };
       roundComplete(result);
       console.log(result)
-      handleModal(<RoundOverModel />);
+      setTimeout(() => {
+        handleModal(<RoundOverModel />);
+      }, 2000)
     }
   }
 
 
 
   if (cellItem === "X") {
-    return (<CellStyle><IconX className="markedItem"/></CellStyle>);
+    return (<CellStyle iswinningcell={iswinningcell !== undefined ? iswinningcell : false} isgamedrawn={isgamedrawn !== undefined ? isgamedrawn : false} ><IconX className="markedItem" /></CellStyle>);
   } else if (cellItem === "O") {
-    return (<CellStyle><IconO className="markedItem"/></CellStyle>);
+    return (<CellStyle iswinningcell={iswinningcell !== undefined ? iswinningcell : false} isgamedrawn={isgamedrawn !== undefined ? isgamedrawn : false} ><IconO className="markedItem"/></CellStyle>);
   }
 
   return (

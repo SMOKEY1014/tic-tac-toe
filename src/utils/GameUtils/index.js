@@ -17,7 +17,8 @@ export const checkForWinner = (board) => {
         result1 = checkForSequence(board[i], board[i + 1], board[i + 2]);
         if (result1) {
             console.log("Row Winner")
-            return true
+            return [i, i+1, i+2]
+            // return true
         }
         
     }
@@ -26,14 +27,23 @@ export const checkForWinner = (board) => {
         result2 = checkForSequence(board[i], board[i + 3], board[i + 6])
         if (result2) {
             console.log("Colomn Winner")   
-            return true
+            // return true
+            return [i, i+3, i+6]
         }
         
     }
     let result3 = ((board[0] === board[4] && board[4] === board[8]) || (board[1] === board[4] && board[4] === board[7]) || (board[2] === board[4] && board[4] === board[6]))
     if (result3) {
         console.log("We have a Diagonal winner")
-        return true;
+        if (result3 === (board[0] === board[4] && board[4] === board[8])) {
+            return [0, 4, 8]   
+        }
+        else if (result3 === (board[1] === board[4] && board[4] === board[7])) {
+            return [1, 4, 7]   
+        } else if(result3 === (board[2] === board[4] && board[4] === board[6])) {
+            return [2, 4, 6]   
+        }
+        // return true;
     }
     let j = 0;
     for (let i = 0; i < 9; i++) {

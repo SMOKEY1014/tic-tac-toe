@@ -32,6 +32,8 @@ export const GameContextProvider = (props) => {
             ...game,
             board: [1, 2, 3, 4, 5, 6, 7, 8, 9],
             turn: "X",
+            roundWinner: "",
+            winningCombo: null
         })
     };
 
@@ -92,11 +94,12 @@ export const GameContextProvider = (props) => {
                 avatarConfig: genConfig()
             },
             turn: "X",
-            roundWinner: ""
+            roundWinner: "",
+            winningCombo: null
         })
     }
-    const updateScore = (winner) => {
-        if (winner === false) {
+    const updateScore = (winner, result) => {
+        if (winner === "draw") {
             setGame(prevGame => ({
             ...prevGame,
             player1: {
@@ -107,7 +110,8 @@ export const GameContextProvider = (props) => {
                 ...prevGame.player2,
                 score: prevGame.player2.score + 0.5,
             },
-            roundWinner: "draw",
+                roundWinner: "draw",
+                winningCombo: [0,1,2,3,4,5,6,7,8]
             
             // roundWinner: `${prevGame.player1} and ${prevGame.player2}`
         }));
@@ -120,7 +124,8 @@ export const GameContextProvider = (props) => {
                     score: prevGame[winner].score + 1,
                 },
                 // roundWinner: null
-                roundWinner: prevGame[winner]
+                roundWinner: prevGame[winner],
+                winningCombo: result
             }));
         }
     };
@@ -132,17 +137,17 @@ export const GameContextProvider = (props) => {
 
     const roundComplete = (result) => {
         if ((game.turn === game.player1.choice) && result) {
-            console.log("PLAYER 1 wins")
-            updateScore("player1");
+            console.log("PLAYER 1 wins", result)
+            updateScore("player1", result);
         }
         else if ((game.turn === game.player2.choice) && result) {
-            console.log("PLAYER 2 wins")
-            updateScore("player2");
+            console.log("PLAYER 2 wins", result)
+            updateScore("player2", result);
         } else {
-            console.log("draw");
+            console.log("draw", result);
             // updateScore("player1");
             // updateScore("player2");
-            updateScore(result);
+            updateScore("draw", result);
         }
         switchTurn();
     };

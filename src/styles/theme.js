@@ -13,6 +13,7 @@ export const lightTheme = {
         black: "#00000099",
         purple: "#8437f9",
         yellow: "#f9c811",
+        green: "#44fc44",
 
         text: "#202124",
     },
@@ -47,7 +48,8 @@ export const darkTheme = {
         white: "#FFFFf0",
         black: "#00000099",
         purple: "#8437f9",
-        yellow: "#19c811",
+        yellow: "#f9c811",
+        green: "#44fc44",
 
         text: "#F6F1EB",
     },
